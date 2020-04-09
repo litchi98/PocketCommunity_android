@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <EditText
+        android:id="@+id/frag_login_tel_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/frag_login_tel_hint"
+        android:inputType="number"
+        android:maxLines="1"
+        />
+        <TextView
+            android:id="@+id/frag_login_tel_null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/frag_login_tel_null"
+            android:visibility="invisible"
+            android:textColor="#F66495"
+            />
+
+    <EditText
+        android:id="@+id/frag_login_pwd_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/frag_login_pwd_hint"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        />
+    <TextView
+        android:id="@+id/frag_login_pwd_null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frag_login_pwd_null"
+        android:visibility="invisible"
+        android:textColor="#F66495"
+        />
+    <CheckBox
+        android:id="@+id/frag_login_remember_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frag_login_rmb_pwd"
+        android:checked="true"
+        />
+    <Button
+        android:id="@+id/frag_login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/account_login"
+        android:enabled="false"
+        android:background="#D3E2FB"
+        android:layout_marginTop="168dp"
+        />
+
+</LinearLayout>

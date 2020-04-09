@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView
+        android:id="@+id/account_logo_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="30dp"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout android:orientation="horizontal"
+            android:id="@+id/chg_frag_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+
+            <TextView
+                android:id="@+id/account_go_login_frag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/account_login" />
+            <TextView
+                android:id="@+id/account_go_rgt_frag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/account_register" />
+            <TextView
+                android:id="@+id/account_go_fpw_frag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/account_fgt_pwd"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chg_frag_layout"
+            >
+            <View
+                android:id="@+id/go_login_gap"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="#3674F5"
+                android:visibility="visible"
+                android:layout_marginHorizontal="20dp"/>
+            <View
+                android:id="@+id/go_register_gap"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="#3674F5"
+                android:visibility="invisible"
+                android:layout_marginHorizontal="20dp"/>
+            <View
+                android:id="@+id/go_fpw_gap"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_weight="1"
+                android:background="#3674F5"
+                android:visibility="invisible"
+                android:layout_marginHorizontal="20dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/account_frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp">
+    </FrameLayout>
+
+</LinearLayout>

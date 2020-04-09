@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Pocket community</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account_login">登录</string>
+    <string name="account_register">注册</string>
+    <string name="account_fgt_pwd">忘记密码</string>
+    <string name="frag_login_tel_hint">手机号</string>
+    <string name="frag_login_pwd_hint">密码</string>
+    <string name="frag_login_rmb_pwd">记住密码</string>
+    <string name="frag_login_tel_null">请输入注册时用的手机号</string>
+    <string name="frag_login_pwd_null">请输入密码</string>
+    <string name="account_confirm">验证</string>
+    <string name="frag_fpw_id_null">请输入该账号绑定的身份证号码</string>
+    <string name="frag_fpw_id_hint">该账号绑定的身份证号码</string>
+    <string name="frag_rgt_name_hint">姓名</string>
+    <string name="frag_rgt_tel_hint">手机号</string>
+    <string name="frag_rgt_id_hint">身份证号码</string>
+    <string name="frag_rgt_btn">注册</string>
+    <string name="frag_rgt_name_null">请输入您的姓名</string>
+    <string name="frag_rgt_tel_null">请输入您的手机号</string>
+    <string name="frag_rgt_id_null">请输入您的身份证号码</string>
+    <string name="frag_rgt_id_img_null">请上传您的身份证号码一面的照片</string>
+    <string name="frag_rgt_contract_img_null">请上传您的购房凭证照片</string>
+</resources>
