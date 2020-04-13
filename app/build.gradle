@@ -27,10 +27,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+//    okhttp
     implementation "com.squareup.okhttp3:okhttp:4.4.0"
+//    gson
     implementation 'com.google.code.gson:gson:2.8.6'
+//    圆形图片
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+//    加载图片
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+//    前端校验
     implementation 'com.mobsandgeeks:android-saripaar:2.0.3'
-    implementation 'org.conscrypt:conscrypt-android:2.2.1'
+//    material
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_notice"
+        android:title="@string/home_ng_notice"
+        android:icon="@drawable/notice"/>
+    <item android:id="@+id/action_community"
+        android:title="@string/home_ng_community"
+        android:icon="@drawable/community"/>
+    <item android:id="@+id/action_me"
+        android:title="@string/home_ng_me"
+        android:icon="@drawable/me"/>
+</menu>

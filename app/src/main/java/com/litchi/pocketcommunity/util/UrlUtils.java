@@ -1,9 +1,5 @@
 package com.litchi.pocketcommunity.util;
 
-import android.util.Log;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class UrlUtils {
 
     // server url
@@ -22,7 +18,13 @@ public class UrlUtils {
     public static final String CRUD = "/user";
 
     // get all user
-    private static final String ALL_USER = "/users";
+    public static final String ALL_USER = "/users";
+
+    // get a image for the day
+    public static final String DAILY_IMAGE = "/dailyImage";
+
+    // get notices by page
+    public static final String GET_NOTICE = "/notices";
 
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();
