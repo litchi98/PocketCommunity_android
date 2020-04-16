@@ -9,6 +9,6 @@ public interface HomeContract {
     interface IHomePresenter {
         void getDailyImage();
 
-        void getNotices(int pageNum, int pageSize);
+        void getNotices(int pageNum, int pageSize, boolean isRefresh);
     }
 }

@@ -11,17 +11,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".featrue.home.HomeActivity" android:theme="@style/FitsSystemWindowsTheme">
+        android:theme="@style/FitsSystemWindowsTheme">
+        <activity
+            android:name=".featrue.noticedetail.NoticeDetailActivity"
+            android:theme="@style/NoticeDetailTheme"></activity>
+        <activity
+            android:name=".featrue.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".featrue.account.AccountActivity" android:theme="@style/FitsSystemWindowsTheme">
-
-        </activity>
+        <activity
+            android:name=".featrue.account.AccountActivity"></activity>
     </application>
 
 </manifest>

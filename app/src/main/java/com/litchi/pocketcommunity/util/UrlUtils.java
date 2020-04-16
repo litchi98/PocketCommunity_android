@@ -26,6 +26,9 @@ public class UrlUtils {
     // get notices by page
     public static final String GET_NOTICE = "/notices";
 
+    // get image
+    public static final String GET_IMAGE = "/image";
+
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();
     }

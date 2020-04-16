@@ -55,7 +55,6 @@ public class LoginFragment extends BaseFragment<AccountPresenter> implements Val
                 String telNumber = telInput.getText().toString();
                 String password = pwdInput.getText().toString();
                 boolean isRemember = rememberCheck.isChecked();
-                System.out.println(presenter);
                 presenter.login(telNumber, password, isRemember);
             }
         });

@@ -10,4 +10,6 @@
 
     <style name="FitsSystemWindowsTheme" parent="AppTheme"/>
 
+    <style name="NoticeDetailTheme" parent="FitsSystemWindowsTheme"/>
+
 </resources>

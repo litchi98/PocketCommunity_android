@@ -16,8 +16,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
 
     private BottomNavigationView bottomNg;
     private NoticeFragment noticeFragment;
-    private CommunityFragment communityFragment;
-    private MeFragment meFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +28,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     @Override
     protected void init() {
         bottomNg = (BottomNavigationView) findViewById(R.id.home_bottom_navigation);
-
         noticeFragment = new NoticeFragment();
-        communityFragment = new CommunityFragment();
-        meFragment = new MeFragment();
-
         changeFragment(noticeFragment);
     }
 
@@ -45,13 +39,15 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_notice:
+                        NoticeFragment noticeFragment = new NoticeFragment();
                         changeFragment(noticeFragment);
+                        HomeActivity.this.noticeFragment = noticeFragment;
                         break;
                     case R.id.action_community:
-                        changeFragment(communityFragment);
+                        changeFragment(new CommunityFragment());
                         break;
                     case R.id.action_me:
-                        changeFragment(meFragment);
+                        changeFragment(new MeFragment());
                         break;
                     default:
                         break;
@@ -73,7 +69,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         fragmentTransaction.commit();
     }
 
-    public NoticeFragment getNoticeFragment() {
-        return noticeFragment;
+    public NoticeFragment getNoticeFragment(){
+        return this.noticeFragment;
     }
 }

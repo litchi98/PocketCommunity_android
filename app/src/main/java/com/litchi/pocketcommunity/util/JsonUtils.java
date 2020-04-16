@@ -1,6 +1,7 @@
 package com.litchi.pocketcommunity.util;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class JsonUtils {
 
@@ -14,4 +15,7 @@ public class JsonUtils {
         return gson.fromJson(json, c);
     }
 
+    public static <T> T parseResultMessageData(Object object, TypeToken typeToken){
+        return gson.fromJson(toJSON(object), typeToken.getType());
+    }
 }

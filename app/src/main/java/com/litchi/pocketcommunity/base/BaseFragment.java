@@ -25,7 +25,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        System.out.println(presenter);
         presenter = (T) ((BaseActivity)getActivity()).getPresenter();
     }
 
