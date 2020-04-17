@@ -14,11 +14,11 @@ public class UrlUtils {
     // register
     public static final String REGISTER = "/register";
 
-    // CRUD
-    public static final String CRUD = "/user";
-
     // get all user
-    public static final String ALL_USER = "/users";
+    public static final String ALL_USER = "/all";
+
+    // add a user
+    public static final String ADD_USER = "/add";
 
     // get a image for the day
     public static final String DAILY_IMAGE = "/dailyImage";
