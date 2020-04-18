@@ -1,13 +1,12 @@
 package com.litchi.pocketcommunity.featrue.account;
 
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.base.BaseFragment;
-import com.litchi.pocketcommunity.util.TextChangedListener;
+import com.litchi.pocketcommunity.util.InputRemindValidator;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
@@ -41,43 +40,8 @@ public class FPwFragment extends BaseFragment implements Validator.ValidationLis
 
     @Override
     protected void registerListener() {
-        telInput.addTextChangedListener(new TextChangedListener(){
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                validator.validate();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals("")){
-                    telRemind.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                telRemind.setVisibility(View.VISIBLE);
-            }
-        });
-        idInput.addTextChangedListener(new TextChangedListener(){
-            @Override
-            public void afterTextChanged(Editable s) {
-                validator.validate();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!s.toString().equals("")){
-                    idRemind.setVisibility(View.INVISIBLE);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                idRemind.setVisibility(View.VISIBLE);
-            }
-         });
+        telInput.addTextChangedListener(new InputRemindValidator(validator, telRemind));
+        idInput.addTextChangedListener(new InputRemindValidator(validator, idRemind));
     }
 
     @Override
@@ -87,13 +51,13 @@ public class FPwFragment extends BaseFragment implements Validator.ValidationLis
 
     @Override
     public void onValidationSucceeded() {
-        btn.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        btn.setBackgroundResource(R.drawable.radius_button);
         btn.setEnabled(true);
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
-        btn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryEnable));
+        btn.setBackgroundResource(R.drawable.enable_radius_button);
         btn.setEnabled(false);
     }
 }

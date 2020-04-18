@@ -29,7 +29,7 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
 
     private LinearLayoutManager linearLayoutManager;
     private NoticeAdapter noticeAdapter;
-    private List<Notice> notices;
+    private List<Notice> notices = new ArrayList<>();
 
     private int pageNum = 1;
     private int pageSize = 4;
@@ -41,7 +41,6 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     protected void init(View view) {
         dailyImage = (ImageView) view.findViewById(R.id.frag_notice_dailyImage);
         noticeRecycler = (RecyclerView) view.findViewById(R.id.frag_notice_recycler_view);
-        notices = new ArrayList<>();
         noticeAdapter = new NoticeAdapter(notices, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,13 +94,12 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         presenter.getDailyImage();
-        getNotices(pageNum, pageSize, true);
+        getNotices(1, 4, true);
     }
 
     private void getNotices(int pageNum, int pageSize, boolean isRefresh){
         if (pageNum <= pages){
             presenter.getNotices(pageNum, pageSize, isRefresh);
-            this.pageNum += 1;
         } else {
             presenter.getNotices(pageNum-1, pageSize, isRefresh);
         }
@@ -114,36 +112,38 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     public void refreshNotices(List<Notice> notices){
         if (noticeRecycler.getScrollState() == RecyclerView.SCROLL_STATE_IDLE
                 && !noticeRecycler.isComputingLayout()) {
-            this.notices.addAll(0, deduplication(notices));
+            this.notices.addAll(0, deduplication(notices, true));
             noticeAdapter.notifyDataSetChanged();
         } else {
-            this.notices.addAll(0, deduplication(notices));
+            this.notices.addAll(0, deduplication(notices, true));
         }
     }
 
     public void updateNotices(List<Notice> notices){
         if (noticeRecycler.getScrollState() == RecyclerView.SCROLL_STATE_IDLE
         && !noticeRecycler.isComputingLayout()){
-            this.notices.addAll(deduplication(notices));
+            this.notices.addAll(deduplication(notices, false));
             noticeAdapter.notifyDataSetChanged();
         }else{
-            this.notices.addAll(deduplication(notices));
+            this.notices.addAll(deduplication(notices, false));
         }
-        isLoading = false;
+        this.isLoading = false;
     }
 
-    private List<Notice> deduplication(List<Notice> notices){
+    private List<Notice> deduplication(List<Notice> notices, Boolean isRefresh){
         notices.removeAll(this.notices);
         if (notices.size() > 0){
+            this.pageNum += 1;
             return notices;
-        } else {
+        } else if (!isRefresh){
             Toast.makeText(getActivity(), "没有更多了...", Toast.LENGTH_SHORT).show();
             return notices;
         }
+        return notices;
     }
 
     public void drawDailyImage(String url) {
-        Glide.with(this).load(url).into(dailyImage);
+        Glide.with(dailyImage).load(url).into(dailyImage);
     }
 
     public void setRefreshing(boolean refreshing){

@@ -12,19 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FitsSystemWindowsTheme">
+        <activity android:name=".featrue.park.ParkActivity"></activity>
+        <activity android:name=".featrue.bill.BillActivity" />
+        <activity android:name=".featrue.proposal.ProposalActivity" />
         <activity
             android:name=".featrue.noticedetail.NoticeDetailActivity"
-            android:theme="@style/NoticeDetailTheme"></activity>
-        <activity
-            android:name=".featrue.home.HomeActivity">
+            android:theme="@style/DarkStatusBarTheme" />
+        <activity android:name=".featrue.home.HomeActivity">
+
+        </activity>
+        <activity android:name=".featrue.account.AccountActivity"
+            android:theme="@style/DarkStatusBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".featrue.account.AccountActivity"></activity>
     </application>
 
 </manifest>

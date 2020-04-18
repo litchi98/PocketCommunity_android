@@ -24,6 +24,9 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
     private TextView goRgt;
     private TextView goFpw;
     private List<View> gapList = new ArrayList<>();
+    private LoginFragment loginFragment;
+    private RegisterFragment registerFragment;
+    private FPwFragment fPwFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,11 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
         gapList.add(findViewById(R.id.go_register_gap));
         gapList.add(findViewById(R.id.go_fpw_gap));
 
-        changeFragment(new LoginFragment());
+        loginFragment = new LoginFragment();
+        registerFragment = new RegisterFragment();
+        fPwFragment = new FPwFragment();
+
+        changeFragment(loginFragment);
     }
 
     @Override
@@ -80,15 +87,15 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.account_go_login_frag:
-                changeFragment(new LoginFragment());
+                changeFragment(loginFragment);
                 changeGapFocus(R.id.go_login_gap);
                 break;
             case R.id.account_go_rgt_frag:
-                changeFragment(new RegisterFragment());
+                changeFragment(registerFragment);
                 changeGapFocus(R.id.go_register_gap);
                 break;
             case R.id.account_go_fpw_frag:
-                changeFragment(new FPwFragment());
+                changeFragment(fPwFragment);
                 changeGapFocus(R.id.go_fpw_gap);
                 break;
             default:

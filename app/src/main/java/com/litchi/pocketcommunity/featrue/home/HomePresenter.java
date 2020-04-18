@@ -57,10 +57,6 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
                 final List<Notice> notices = JsonUtils.parseResultMessageData(noticesData, new TypeToken<List<Notice>>(){});
                 Object pagesData = resultMessage.getData("pages");
                 final int pages = JsonUtils.parseResultMessageData(pagesData, new TypeToken<Integer>(){});
-                for (Notice notice :
-                        notices) {
-                    System.out.println(notice.toString());
-                }
                 getView().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

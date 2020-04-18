@@ -6,7 +6,4 @@
     <item android:id="@+id/action_community"
         android:title="@string/home_ng_community"
         android:icon="@drawable/community"/>
-    <item android:id="@+id/action_me"
-        android:title="@string/home_ng_me"
-        android:icon="@drawable/me"/>
 </menu>

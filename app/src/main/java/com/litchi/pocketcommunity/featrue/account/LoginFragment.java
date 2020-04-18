@@ -39,7 +39,6 @@ public class LoginFragment extends BaseFragment<AccountPresenter> implements Val
         telRemind = view.findViewById(R.id.frag_login_tel_null);
         rememberCheck = (CheckBox) view.findViewById(R.id.frag_login_remember_check);
 
-
         validator = new Validator(this);
         validator.setValidationListener(this);
     }
@@ -67,13 +66,13 @@ public class LoginFragment extends BaseFragment<AccountPresenter> implements Val
 
     @Override
     public void onValidationSucceeded() {
-        loginBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        loginBtn.setBackgroundResource(R.drawable.radius_button);
         loginBtn.setEnabled(true);
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
-        loginBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryEnable));
+        loginBtn.setBackgroundResource(R.drawable.enable_radius_button);
         loginBtn.setEnabled(false);
     }
 }

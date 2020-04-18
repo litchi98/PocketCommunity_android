@@ -69,13 +69,13 @@ public class RegisterFragment extends BaseFragment implements Validator.Validati
 
     @Override
     public void onValidationSucceeded() {
-        rgtBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        rgtBtn.setBackgroundResource(R.drawable.radius_button);
         rgtBtn.setEnabled(true);
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
-        rgtBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryEnable));
+        rgtBtn.setBackgroundResource(R.drawable.enable_radius_button);
         rgtBtn.setEnabled(false);
     }
 }

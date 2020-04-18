@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="NoticeDetailTheme" parent="FitsSystemWindowsTheme">
+    <style name="DarkStatusBarTheme" parent="FitsSystemWindowsTheme">
         <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

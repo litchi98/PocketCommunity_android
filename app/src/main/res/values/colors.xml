@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#3674F5</color>
     <color name="colorPrimaryEnable">#D3E2FB</color>
     <color name="colorAccent">#F66495</color>
+    <color name="ActionPressed">#D0D0D4</color>
+    <color name="white">#fff</color>
 </resources>

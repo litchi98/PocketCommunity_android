@@ -1,5 +1,7 @@
 package com.litchi.pocketcommunity.featrue.home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -16,6 +18,17 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
 
     private BottomNavigationView bottomNg;
     private NoticeFragment noticeFragment;
+    private CommunityFragment communityFragment;
+    private int roleId;
+
+    public static void startAction(Context context, Integer avatarId, String telNumber, String name, Integer roleId){
+        Intent intent = new Intent(context, HomeActivity.class);
+        intent.putExtra("avatarId", avatarId);
+        intent.putExtra("telNumber", telNumber);
+        intent.putExtra("name", name);
+        intent.putExtra("roleId", roleId);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +40,14 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
 
     @Override
     protected void init() {
+        Intent intent = getIntent();
+        int avatarId = intent.getIntExtra("avatarId", 11);
+        String telNumber = intent.getStringExtra("telNumber");
+        String name = intent.getStringExtra("name");
+        roleId = intent.getIntExtra("roleId", 2);
         bottomNg = (BottomNavigationView) findViewById(R.id.home_bottom_navigation);
         noticeFragment = new NoticeFragment();
+        communityFragment = new CommunityFragment(avatarId, name, telNumber, roleId);
         changeFragment(noticeFragment);
     }
 
@@ -39,15 +58,10 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_notice:
-                        NoticeFragment noticeFragment = new NoticeFragment();
                         changeFragment(noticeFragment);
-                        HomeActivity.this.noticeFragment = noticeFragment;
                         break;
                     case R.id.action_community:
-                        changeFragment(new CommunityFragment());
-                        break;
-                    case R.id.action_me:
-                        changeFragment(new MeFragment());
+                        changeFragment(communityFragment);
                         break;
                     default:
                         break;

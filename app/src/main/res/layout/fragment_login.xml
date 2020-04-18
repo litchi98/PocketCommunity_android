@@ -49,8 +49,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/account_login"
+        android:textColor="#fff"
+        android:textSize="20sp"
         android:enabled="false"
-        android:background="#D3E2FB"
+        android:background="@drawable/enable_radius_button"
         android:layout_marginTop="168dp"
         />
 
