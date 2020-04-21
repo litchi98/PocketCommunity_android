@@ -8,5 +8,6 @@ public interface ProposalDetailContract {
 
     interface IProposalDetailPreserter{
 
+        void getProposalDetail(Integer proposalId);
     }
 }

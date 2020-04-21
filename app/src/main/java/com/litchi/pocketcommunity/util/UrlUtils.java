@@ -38,6 +38,9 @@ public class UrlUtils {
     // get not done proposal
     public static final String GET_UNDONE_PROPOSAL = "/work-orders/undone";
 
+    // get proposal detail
+    public static final String GET_PROPOSAL_DETAIL = "/work-order/detail";
+
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();
     }

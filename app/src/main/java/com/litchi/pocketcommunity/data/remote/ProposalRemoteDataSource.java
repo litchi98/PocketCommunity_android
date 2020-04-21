@@ -16,4 +16,9 @@ public class ProposalRemoteDataSource implements ProposalDataSource {
     public void getUndoneProposal(String condition, Callback callback) {
         HttpUtils.get(UrlUtils.url(UrlUtils.GET_UNDONE_PROPOSAL+"?condition="+condition), callback);
     }
+
+    @Override
+    public void getProposalDetail(Integer proposalId, Callback callback) {
+        HttpUtils.get(UrlUtils.url(UrlUtils.GET_PROPOSAL_DETAIL+"?workOrderId="+proposalId), callback);
+    }
 }

@@ -36,4 +36,5 @@
     <string name="frag_community_goto_bill">账单</string>
     <string name="frag_community_goto_proposal">反馈</string>
     <string name="proposal_search">搜索</string>
+    <string name="proposal_detail_recycle_title">处理进展</string>
 </resources>

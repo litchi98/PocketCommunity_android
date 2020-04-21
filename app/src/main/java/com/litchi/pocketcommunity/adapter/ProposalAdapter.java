@@ -17,16 +17,19 @@ import java.util.List;
 
 public class ProposalAdapter extends RecyclerView.Adapter<ProposalAdapter.ViewHolder> {
 
+    private View.OnClickListener onClickListener;
     private List<Proposal> proposals;
 
-    public ProposalAdapter(List<Proposal> proposals) {
+    public ProposalAdapter(List<Proposal> proposals, View.OnClickListener onClickListener) {
         this.proposals = proposals;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_proposal, parent, false);
+        view.setOnClickListener(onClickListener);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

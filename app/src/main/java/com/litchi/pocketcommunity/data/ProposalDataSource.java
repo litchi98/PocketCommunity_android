@@ -6,4 +6,6 @@ public interface ProposalDataSource {
     void getDoneProposal(String condition, Callback callback);
 
     void getUndoneProposal(String condition, Callback callback);
+
+    void getProposalDetail(Integer proposalId, Callback callback);
 }
