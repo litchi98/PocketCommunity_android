@@ -1,14 +1,14 @@
 package com.litchi.pocketcommunity.util;
 
 public class Authorization {
-    private String expireTime;
+    private long expireTime;
     private String token;
 
-    public String getExpireTime() {
+    public long getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(String expireTime) {
+    public void setExpireTime(long expireTime) {
         this.expireTime = expireTime;
     }
 

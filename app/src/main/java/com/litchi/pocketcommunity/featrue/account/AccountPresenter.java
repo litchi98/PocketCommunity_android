@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 import com.google.gson.reflect.TypeToken;
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.base.BasePresenter;
@@ -14,6 +13,7 @@ import com.litchi.pocketcommunity.data.AccountDataSource;
 import com.litchi.pocketcommunity.data.bean.User;
 import com.litchi.pocketcommunity.data.remote.AccountRemoteDataSource;
 import com.litchi.pocketcommunity.featrue.home.HomeActivity;
+import com.litchi.pocketcommunity.util.Authorization;
 import com.litchi.pocketcommunity.util.JsonUtils;
 import com.litchi.pocketcommunity.util.ResultMessage;
 
@@ -56,9 +56,10 @@ public class AccountPresenter extends BasePresenter<AccountActivity> implements 
                         edit.remove("telNumber");
                         edit.remove("password");
                     }
-                    LinkedTreeMap authorization = (LinkedTreeMap)resultMessage.getData("authorization");
-                    edit.putString("expireTime", authorization.get("expireTime").toString());
-                    edit.putString("token", authorization.get("token").toString());
+                    Authorization authorization = JsonUtils.parseResultMessageData(resultMessage
+                            .getData("authorization"), new TypeToken<Authorization>() {});
+                    edit.putLong("expireTime", authorization.getExpireTime());
+                    edit.putString("token", authorization.getToken());
                     Integer avatarId = JsonUtils.parseResultMessageData(resultMessage.getData("avatarId"), new TypeToken<Integer>(){});
                     String name = resultMessage.getData("name").toString();
                     Integer roleId = JsonUtils.parseResultMessageData(resultMessage.getData("roleId"), new TypeToken<Integer>(){});

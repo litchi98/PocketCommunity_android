@@ -35,7 +35,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         init();
-        registerListener();
+        register();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     }
 
     @Override
-    protected void registerListener() {
+    protected void register() {
         bottomNg.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

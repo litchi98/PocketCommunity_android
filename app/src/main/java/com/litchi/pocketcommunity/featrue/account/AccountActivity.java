@@ -33,7 +33,7 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         init();
-        registerListener();
+        register();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
     }
 
     @Override
-    protected void registerListener() {
+    protected void register() {
         goLogin.setOnClickListener(this);
         goRgt.setOnClickListener(this);
         goFpw.setOnClickListener(this);

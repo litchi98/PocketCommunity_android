@@ -20,14 +20,23 @@ public class UrlUtils {
     // add a user
     public static final String ADD_USER = "/add";
 
+    /* Tool api */
     // get a image for the day
     public static final String DAILY_IMAGE = "/dailyImage";
 
+    // get image
+    public static final String GET_IMAGE = "/image";
+
+    /* Notice api */
     // get notices by page
     public static final String GET_NOTICE = "/notices";
 
-    // get image
-    public static final String GET_IMAGE = "/image";
+    /* Proposal api */
+    // get done proposal
+    public static final String GET_DONE_PROPOSAL = "/work-orders/done";
+
+    // get not done proposal
+    public static final String GET_UNDONE_PROPOSAL = "/work-orders/undone";
 
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();

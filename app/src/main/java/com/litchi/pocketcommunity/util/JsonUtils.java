@@ -15,7 +15,7 @@ public class JsonUtils {
         return gson.fromJson(json, c);
     }
 
-    public static <T> T parseResultMessageData(Object object, TypeToken typeToken){
+    public static <T> T parseResultMessageData(Object object, TypeToken<T> typeToken){
         return gson.fromJson(toJSON(object), typeToken.getType());
     }
 }

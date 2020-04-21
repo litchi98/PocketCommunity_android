@@ -21,7 +21,7 @@
     <string name="frag_rgt_name_null">请输入您的姓名</string>
     <string name="frag_rgt_tel_null">请输入您的手机号</string>
     <string name="frag_rgt_id_null">请输入您的身份证号码</string>
-    <string name="frag_rgt_id_img_null">请上传您的身份证号码一面的照片</string>
+    <string name="frag_rgt_id_img_null">请上传身份证号码一面的照片</string>
     <string name="frag_rgt_contract_img_null">请上传您的购房凭证照片</string>
     <string name="home_ng_notice">通知</string>
     <string name="home_ng_community">社区</string>
@@ -35,4 +35,5 @@
     <string name="frag_community_goto_park">停车</string>
     <string name="frag_community_goto_bill">账单</string>
     <string name="frag_community_goto_proposal">反馈</string>
+    <string name="proposal_search">搜索</string>
 </resources>

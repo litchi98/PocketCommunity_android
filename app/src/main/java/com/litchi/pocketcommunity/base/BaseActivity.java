@@ -9,7 +9,7 @@ import com.litchi.pocketcommunity.util.MyActivityManager;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView{
 
-    private T presenter;
+    protected T presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected abstract void init();
 
-    protected abstract void registerListener();
+    protected abstract void register();
 
     protected abstract T createPresenter();
 

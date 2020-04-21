@@ -32,6 +32,7 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:textStyle="bold"
                 android:text="@string/account_login" />
             <TextView
                 android:id="@+id/account_go_rgt_frag"
@@ -43,6 +44,7 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:textStyle="bold"
                 android:text="@string/account_register" />
             <TextView
                 android:id="@+id/account_go_fpw_frag"
@@ -54,6 +56,8 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
+                android:textStyle="bold"
+
                 android:text="@string/account_fgt_pwd"/>
 
         </LinearLayout>
