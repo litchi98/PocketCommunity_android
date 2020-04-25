@@ -63,9 +63,12 @@ public class AccountPresenter extends BasePresenter<AccountActivity> implements 
                     Integer avatarId = JsonUtils.parseResultMessageData(resultMessage.getData("avatarId"), new TypeToken<Integer>(){});
                     String name = resultMessage.getData("name").toString();
                     Integer roleId = JsonUtils.parseResultMessageData(resultMessage.getData("roleId"), new TypeToken<Integer>(){});
+                    Integer currentUserId = JsonUtils.parseResultMessageData(resultMessage.getData("currentUserId"), new TypeToken<Integer>() {
+                    });
                     edit.putString("name", name);
                     edit.apply();
-                    HomeActivity.startAction(getView(), avatarId, telNumber, name, roleId);
+                    HomeActivity.startAction(getView(), avatarId, telNumber, name, roleId, currentUserId);
+                    getView().finish();
                 } else {
                     if (resultMessage.getMsg().equals(LOGIN_VERIFY_REFUSAL)){
                         getView().showDialog(resultMessage.getMsg(), " result: " + resultMessage.getData("reason")

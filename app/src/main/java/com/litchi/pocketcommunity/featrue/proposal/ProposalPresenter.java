@@ -32,10 +32,6 @@ public class ProposalPresenter extends BasePresenter<ProposalActivity> implement
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 ResultMessage resultMessage = JsonUtils.parseJSON(response.body().string(), ResultMessage.class);
-                if (resultMessage.getResult().equals(ResultMessage.ERROR_RESULT)){
-                    getView().refreshNotDoneList(null);
-                    return;
-                }
                 final List<Proposal> doneList = JsonUtils.parseResultMessageData(resultMessage.getData("doneList"),
                         new TypeToken<List<Proposal>>(){});
                 getView().runOnUiThread(new Runnable() {
@@ -59,10 +55,6 @@ public class ProposalPresenter extends BasePresenter<ProposalActivity> implement
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 ResultMessage resultMessage = JsonUtils.parseJSON(response.body().string(), ResultMessage.class);
-                if (ResultMessage.ERROR_RESULT.equals(resultMessage.getResult())){
-                    getView().refreshNotDoneList(null);
-                    return;
-                }
                 final List<Proposal> notDoneList = JsonUtils.parseResultMessageData(resultMessage.getData("notDoneList"),
                         new TypeToken<List<Proposal>>(){});
                 getView().runOnUiThread(new Runnable() {

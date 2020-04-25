@@ -32,7 +32,6 @@ public class InputRemindValidator implements TextWatcher {
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         if (count > 0){
             remind.setVisibility(View.VISIBLE);
-            System.out.println(s);
         }
     }
 }

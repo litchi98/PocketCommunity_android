@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+    public static final int ROLE_MANAGER = 1;
+    public static final int ROLE_STANDARD = 2;
+
     private int id;
     private String name;
     private String password;

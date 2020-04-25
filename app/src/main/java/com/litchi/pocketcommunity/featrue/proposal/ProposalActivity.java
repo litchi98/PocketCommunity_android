@@ -1,6 +1,7 @@
 package com.litchi.pocketcommunity.featrue.proposal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -34,6 +35,8 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
     private String[] tabTexts;
     private View back;
     private EditText search;
+    private int roleId;
+    private int currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,10 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
 
     @Override
     protected void init() {
+        Intent intent = getIntent();
+        roleId = intent.getIntExtra("roleId", 2);
+        currentUserId = intent.getIntExtra("currentUserId", 0);
+
         tabLayout = (TabLayout) findViewById(R.id.proposal_tab_layout);
         viewPager2 = (ViewPager2) findViewById(R.id.proposal_view_pager);
         back = findViewById(R.id.proposal_back);
@@ -65,12 +72,13 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH){
-                    presenter.getUndoneProposals(search.getText().toString());
-                    presenter.getDoneProposals(search.getText().toString());
+                    getProposalFillView();
                     hideKeyboard(search);
                 }
                 return false;
             }
+
+
         });
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,9 +89,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (i1 > 0 && charSequence.toString().equals("")){
-                    presenter.getUndoneProposals(search.getText().toString());
-                    presenter.getDoneProposals(search.getText().toString());
-                    System.out.println("=========");
+                    getProposalFillView();
                 }
             }
 
@@ -99,11 +105,17 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
         return new ProposalPresenter();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getProposalFillView();
+    }
+
     private void initPageView2() {
         viewPager2.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         proposalListFragments = new ArrayList<>();
-        proposalListFragments.add(new ProposalListFragment(false));
-        proposalListFragments.add(new ProposalListFragment(true));
+        proposalListFragments.add(new ProposalListFragment(roleId, currentUserId));
+        proposalListFragments.add(new ProposalListFragment(roleId, currentUserId));
         tabTexts = new String[]{"未关闭","已关闭"};
         viewPager2.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
@@ -137,6 +149,11 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
 
     public void refreshDoneList(List<Proposal> doneList) {
         proposalListFragments.get(1).refreshList(doneList);
+    }
+
+    private void getProposalFillView() {
+        presenter.getUndoneProposals(search.getText().toString());
+        presenter.getDoneProposals(search.getText().toString());
     }
 
     public void hideKeyboard(View view) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.litchi.pocketcommunity.adapter.ProposalDetailAdapter;
 import com.litchi.pocketcommunity.base.BaseActivity;
 import com.litchi.pocketcommunity.data.bean.Proposal;
 import com.litchi.pocketcommunity.data.bean.ProposalItem;
+import com.litchi.pocketcommunity.data.bean.User;
 import com.litchi.pocketcommunity.util.UrlUtils;
 
 import java.text.SimpleDateFormat;
@@ -32,14 +34,22 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
     private TextView title;
     private TextView content;
     private RecyclerView recyclerView;
-    private List<ProposalItem> proposalItems = new ArrayList<>();
-    private Proposal proposal;
-    private ProposalDetailAdapter proposalDetailAdapter;
     private View back;
+    private List<ProposalItem> proposalItems = new ArrayList<>();
+    private ProposalDetailAdapter proposalDetailAdapter;
+    private Proposal proposal;
+    private int roleId;
+    private int currentUserId;
+    private Button returnBtn;
+    private Button finishBtn;
+    private Button transferBtn;
+    private Button commitBtn;
 
-    public static void startAction(Context context, Parcelable proposal){
+    public static void startAction(Context context, Parcelable proposal, int roleId, int currentUserId){
         Intent intent = new Intent(context, ProposalDetailActivity.class);
         intent.putExtra("proposal", proposal);
+        intent.putExtra("roleId", roleId);
+        intent.putExtra("currentUserId", currentUserId);
         context.startActivity(intent);
     }
 
@@ -53,7 +63,11 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
 
     @Override
     protected void init() {
-        proposal = getIntent().getParcelableExtra("proposal");
+        Intent intent = getIntent();
+        roleId = intent.getIntExtra("roleId", 2);
+        currentUserId = intent.getIntExtra("currentUserId", 0);
+        proposal = intent.getParcelableExtra("proposal");
+
         avatar = (CircleImageView) findViewById(R.id.proposal_detail_avatar);
         name = (TextView) findViewById(R.id.proposal_detail_name);
         date = (TextView) findViewById(R.id.proposal_detail_date);
@@ -61,10 +75,23 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
         content = (TextView) findViewById(R.id.proposal_detail_content);
         recyclerView = (RecyclerView) findViewById(R.id.proposal_detail_recycler);
         back = findViewById(R.id.proposal_detail_back);
+        returnBtn = (Button) findViewById(R.id.proposal_detail_return);
+        finishBtn = (Button) findViewById(R.id.proposal_detail_finish);
+        transferBtn = (Button) findViewById(R.id.proposal_detail_transfer);
+        commitBtn = (Button) findViewById(R.id.proposal_detail_commit);
 
         date.setText(new SimpleDateFormat("MM-dd HH:mm").format(proposal.getProposeDate()));
         title.setText(proposal.getTitle());
         content.setText(proposal.getContent());
+
+        if (proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_STANDARD){
+            returnBtn.setVisibility(View.VISIBLE);
+            finishBtn.setVisibility(View.VISIBLE);
+        }
+        if (proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_MANAGER){
+            transferBtn.setVisibility(View.VISIBLE);
+            commitBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

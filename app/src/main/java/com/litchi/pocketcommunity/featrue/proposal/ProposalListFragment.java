@@ -1,10 +1,8 @@
 package com.litchi.pocketcommunity.featrue.proposal;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,10 +20,12 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
     private List<Proposal> proposals = new ArrayList<>();
     private ProposalAdapter proposalAdapter;
 
-    private boolean isDoneListFragment;
+    private int roleId;
+    private int currentUserId;
 
-    public ProposalListFragment(boolean isDoneListFragment) {
-        this.isDoneListFragment = isDoneListFragment;
+    public ProposalListFragment(int roleId, int currentUserId) {
+        this.roleId = roleId;
+        this.currentUserId = currentUserId;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
                 int position = proposalList.getChildAdapterPosition(view);
                 Proposal proposal = proposals.get(position);
                 if (proposal.getState() != Proposal.STATE_TO_BE_PROCESSED){
-                    ProposalDetailActivity.startAction(getActivity(), proposal);
+                    ProposalDetailActivity.startAction(getActivity(), proposal, roleId, currentUserId);
                 } else {
                     Toast.makeText(getActivity(), "该工单还未处理\n请耐心等待", Toast.LENGTH_SHORT).show();
                 }
@@ -50,16 +50,6 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
     @Override
     protected void registerListener() {
 
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (isDoneListFragment){
-            presenter.getDoneProposals("");
-        }else {
-            presenter.getUndoneProposals("");
-        }
     }
 
     @Override

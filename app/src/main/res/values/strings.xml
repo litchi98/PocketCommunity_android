@@ -37,4 +37,8 @@
     <string name="frag_community_goto_proposal">反馈</string>
     <string name="proposal_search">搜索</string>
     <string name="proposal_detail_recycle_title">处理进展</string>
+    <string name="proposal_detail_return_btn">回退</string>
+    <string name="proposal_detail_finish_btn">验收</string>
+    <string name="proposal_detail_commit_btn">提交</string>
+    <string name="proposal_detail_transfer_btn">转派</string>
 </resources>

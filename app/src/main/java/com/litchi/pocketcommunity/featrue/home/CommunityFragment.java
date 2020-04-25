@@ -23,12 +23,14 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
     private String name;
     private String telNumber;
     private Integer roleId;
+    private Integer currentUserId;
 
-    public CommunityFragment(Integer avatarId, String name, String telNumber, int roleId) {
+    public CommunityFragment(Integer avatarId, String name, String telNumber, int roleId, int currentUserId) {
         this.avatarId = avatarId;
         this.name = name;
         this.telNumber = telNumber;
         this.roleId = roleId;
+        this.currentUserId = currentUserId;
     }
 
     @Override
@@ -73,7 +75,10 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
 
                 break;
             case R.id.frag_community_go_proposal:
-                getActivity().startActivity(new Intent(getActivity(), ProposalActivity.class));
+                Intent intent = new Intent(getActivity(), ProposalActivity.class);
+                intent.putExtra("roleId", roleId);
+                intent.putExtra("currentUserId", currentUserId);
+                getActivity().startActivity(intent);
                 break;
             default:
                 break;

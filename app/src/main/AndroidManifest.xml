@@ -18,7 +18,9 @@
         <activity android:name=".featrue.bill.BillActivity" />
         <activity
             android:name=".featrue.proposal.ProposalActivity"
-            android:theme="@style/FitsSystemWindowsTheme" />
+            android:theme="@style/FitsSystemWindowsTheme"
+            android:launchMode="singleTask"
+            />
         <activity
             android:name=".featrue.noticedetail.NoticeDetailActivity"
             android:theme="@style/DarkStatusBarTheme" />

@@ -73,7 +73,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="135******2106"
-                        android:textColor="#fff" />
+                        android:textColor="#D6E4FD"
+                        android:background="@drawable/radius_tel_text"
+                        />
                 </LinearLayout>
             </LinearLayout>
 

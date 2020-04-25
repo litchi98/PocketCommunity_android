@@ -20,13 +20,15 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     private NoticeFragment noticeFragment;
     private CommunityFragment communityFragment;
     private int roleId;
+    private int currentUserId;
 
-    public static void startAction(Context context, Integer avatarId, String telNumber, String name, Integer roleId){
+    public static void startAction(Context context, Integer avatarId, String telNumber, String name, Integer roleId, Integer currentUserId){
         Intent intent = new Intent(context, HomeActivity.class);
         intent.putExtra("avatarId", avatarId);
         intent.putExtra("telNumber", telNumber);
         intent.putExtra("name", name);
         intent.putExtra("roleId", roleId);
+        intent.putExtra("currentUserId", currentUserId);
         context.startActivity(intent);
     }
 
@@ -45,9 +47,10 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
         String telNumber = intent.getStringExtra("telNumber");
         String name = intent.getStringExtra("name");
         roleId = intent.getIntExtra("roleId", 2);
+        currentUserId = intent.getIntExtra("currentUserId", 0);
         bottomNg = (BottomNavigationView) findViewById(R.id.home_bottom_navigation);
         noticeFragment = new NoticeFragment();
-        communityFragment = new CommunityFragment(avatarId, name, telNumber, roleId);
+        communityFragment = new CommunityFragment(avatarId, name, telNumber, roleId, currentUserId);
         changeFragment(noticeFragment);
     }
 
