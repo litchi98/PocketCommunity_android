@@ -1,7 +1,5 @@
 package com.litchi.pocketcommunity.data.remote;
 
-import android.util.Log;
-
 import com.litchi.pocketcommunity.data.AccountDataSource;
 import com.litchi.pocketcommunity.data.bean.User;
 import com.litchi.pocketcommunity.util.HttpUtils;
@@ -46,5 +44,10 @@ public class AccountRemoteDataSource implements AccountDataSource {
 
     @Override
     public void getUser(int id, Callback callback) {
+    }
+
+    @Override
+    public void getUserByRoleId(int roleId, Callback callback) {
+        HttpUtils.get(UrlUtils.url(UrlUtils.ALL_USER)+"/"+roleId, callback);
     }
 }

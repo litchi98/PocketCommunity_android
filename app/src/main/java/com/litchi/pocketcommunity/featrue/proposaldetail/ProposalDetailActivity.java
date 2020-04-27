@@ -7,13 +7,15 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.litchi.pocketcommunity.R;
-import com.litchi.pocketcommunity.adapter.ProposalDetailAdapter;
+import com.litchi.pocketcommunity.adapter.ItemProposalDetailAdapter;
 import com.litchi.pocketcommunity.base.BaseActivity;
 import com.litchi.pocketcommunity.data.bean.Proposal;
 import com.litchi.pocketcommunity.data.bean.ProposalItem;
@@ -26,7 +28,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter> implements ProposalDetailContract.IPropoalDetailView {
+public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter>
+        implements ProposalDetailContract.IProposalDetailView, View.OnClickListener {
 
     private CircleImageView avatar;
     private TextView name;
@@ -36,14 +39,16 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
     private RecyclerView recyclerView;
     private View back;
     private List<ProposalItem> proposalItems = new ArrayList<>();
-    private ProposalDetailAdapter proposalDetailAdapter;
+    private ItemProposalDetailAdapter proposalDetailAdapter;
     private Proposal proposal;
     private int roleId;
     private int currentUserId;
     private Button returnBtn;
     private Button finishBtn;
-    private Button transferBtn;
-    private Button commitBtn;
+    private Button followUpBtn;
+    private Button submitBtn;
+
+    private ProposalDialog proposalDialog;
 
     public static void startAction(Context context, Parcelable proposal, int roleId, int currentUserId){
         Intent intent = new Intent(context, ProposalDetailActivity.class);
@@ -77,26 +82,28 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
         back = findViewById(R.id.proposal_detail_back);
         returnBtn = (Button) findViewById(R.id.proposal_detail_return);
         finishBtn = (Button) findViewById(R.id.proposal_detail_finish);
-        transferBtn = (Button) findViewById(R.id.proposal_detail_transfer);
-        commitBtn = (Button) findViewById(R.id.proposal_detail_commit);
+        followUpBtn = (Button) findViewById(R.id.proposal_detail_follow_up);
+        submitBtn = (Button) findViewById(R.id.proposal_detail_submit);
 
         date.setText(new SimpleDateFormat("MM-dd HH:mm").format(proposal.getProposeDate()));
         title.setText(proposal.getTitle());
         content.setText(proposal.getContent());
 
-        if (proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_STANDARD){
+        if (proposal.getState() != Proposal.STATE_FINISH
+                && proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_STANDARD){
             returnBtn.setVisibility(View.VISIBLE);
             finishBtn.setVisibility(View.VISIBLE);
         }
-        if (proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_MANAGER){
-            transferBtn.setVisibility(View.VISIBLE);
-            commitBtn.setVisibility(View.VISIBLE);
+        if (proposal.getState() != Proposal.STATE_FINISH
+        && proposal.getCurrentProcessorId()==currentUserId && roleId == User.ROLE_MANAGER){
+            followUpBtn.setVisibility(View.VISIBLE);
+            submitBtn.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     protected void register() {
-        proposalDetailAdapter = new ProposalDetailAdapter(proposalItems);
+        proposalDetailAdapter = new ItemProposalDetailAdapter(proposalItems);
         recyclerView.setAdapter(proposalDetailAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         presenter.getProposalDetail(proposal.getId());
@@ -106,6 +113,11 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
                 finish();
             }
         });
+
+        returnBtn.setOnClickListener(this);
+        finishBtn.setOnClickListener(this);
+        followUpBtn.setOnClickListener(this);
+        submitBtn.setOnClickListener(this);
     }
 
     @Override
@@ -121,5 +133,68 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
     public void setNameAndAvatar(String name, Integer avatarId){
         this.name.setText(name);
         Glide.with(avatar).load(UrlUtils.url(UrlUtils.GET_IMAGE+"/"+avatarId)).into(avatar);
+    }
+
+    @Override
+    public void onClick(View view) {
+        ProposalItem proposalItem = new ProposalItem();
+        proposalItem.setProcessorId(currentUserId);
+        proposalItem.setWorkOrderId(proposal.getId());
+        switch (view.getId()){
+            case R.id.proposal_detail_return:
+                proposalItem.setType(ProposalItem.TYPE_RETURN);
+                proposalItem.setNextProcessorId(proposalItems.get(proposalItems.size()-1).getProcessorId());
+                proposalItem.setNextProcessorName(proposalItems.get(proposalItems.size()-1).getProcessorName());
+                this.proposalDialog = new ProposalDialog(this, proposalItem, presenter);
+                proposalDialog.show();
+                break;
+            case R.id.proposal_detail_submit:
+                proposalItem.setType(ProposalItem.TYPE_SUBMIT);
+                proposalItem.setNextProcessorId(proposalItems.get(0).getProcessorId());
+                proposalItem.setNextProcessorName(proposalItems.get(0).getProcessorName());
+                this.proposalDialog = new ProposalDialog(this, proposalItem, presenter);
+                proposalDialog.show();
+                break;
+            case R.id.proposal_detail_finish:
+                proposalItem.setType(ProposalItem.TYPE_FINISH);
+                presenter.proposalTransfer(proposalItem);
+                break;
+            case R.id.proposal_detail_follow_up:
+                TransferListActivity.startAction(this);
+                break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (this.proposalDialog != null){
+            proposalDialog.dismiss();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    int nextProcessorId = data.getIntExtra("id", 0);
+                    String nextProcessorName = data.getStringExtra("name");
+                    ProposalItem proposalItem = new ProposalItem();
+                    proposalItem.setProcessorId(currentUserId);
+                    proposalItem.setWorkOrderId(proposal.getId());
+                    proposalItem.setType(ProposalItem.TYPE_FOLLOW_UP);
+                    proposalItem.setNextProcessorId(nextProcessorId);
+                    proposalItem.setNextProcessorName(nextProcessorName);
+                    this.proposalDialog = new ProposalDialog(this, proposalItem, presenter);
+                    proposalDialog.show();
+                }
+                break;
+        }
+    }
+
+    public void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }

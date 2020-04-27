@@ -107,7 +107,7 @@ public class ProposalItem {
             case TYPE_SUBMIT:
                 return "提交";
             case TYPE_FINISH:
-                return "结束";
+                return "验收";
             default:
                 return "";
         }

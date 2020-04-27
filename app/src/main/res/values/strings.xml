@@ -41,4 +41,5 @@
     <string name="proposal_detail_finish_btn">验收</string>
     <string name="proposal_detail_commit_btn">提交</string>
     <string name="proposal_detail_transfer_btn">转派</string>
+    <string name="transfer_list_title">请选择处理人</string>
 </resources>

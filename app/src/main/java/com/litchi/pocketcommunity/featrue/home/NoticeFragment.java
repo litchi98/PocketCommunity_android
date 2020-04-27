@@ -13,7 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.litchi.pocketcommunity.R;
-import com.litchi.pocketcommunity.adapter.NoticeAdapter;
+import com.litchi.pocketcommunity.adapter.ItemNoticeAdapter;
 import com.litchi.pocketcommunity.base.BaseFragment;
 import com.litchi.pocketcommunity.data.bean.Notice;
 import com.litchi.pocketcommunity.featrue.noticedetail.NoticeDetailActivity;
@@ -28,7 +28,7 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     private SwipeRefreshLayout refreshLayout;
 
     private LinearLayoutManager linearLayoutManager;
-    private NoticeAdapter noticeAdapter;
+    private ItemNoticeAdapter noticeAdapter;
     private List<Notice> notices = new ArrayList<>();
 
     private int pageNum = 1;
@@ -41,7 +41,7 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     protected void init(View view) {
         dailyImage = (ImageView) view.findViewById(R.id.frag_notice_dailyImage);
         noticeRecycler = (RecyclerView) view.findViewById(R.id.frag_notice_recycler_view);
-        noticeAdapter = new NoticeAdapter(notices, new View.OnClickListener() {
+        noticeAdapter = new ItemNoticeAdapter(notices, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = noticeRecycler.getChildAdapterPosition(v);

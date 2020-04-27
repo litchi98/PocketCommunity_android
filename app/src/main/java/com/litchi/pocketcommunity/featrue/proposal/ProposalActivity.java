@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.litchi.pocketcommunity.R;
@@ -37,6 +38,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
     private EditText search;
     private int roleId;
     private int currentUserId;
+    private FloatingActionButton addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
         viewPager2 = (ViewPager2) findViewById(R.id.proposal_view_pager);
         back = findViewById(R.id.proposal_back);
         search = (EditText) findViewById(R.id.proposal_search);
+        addBtn = (FloatingActionButton) findViewById(R.id.proposal_floatingBtn);
 
         initPageView2();
     }
@@ -98,6 +101,12 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
 
             }
         });
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
     }
 
     @Override
@@ -108,7 +117,6 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
     @Override
     protected void onStart() {
         super.onStart();
-        getProposalFillView();
     }
 
     private void initPageView2() {
@@ -151,7 +159,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
         proposalListFragments.get(1).refreshList(doneList);
     }
 
-    private void getProposalFillView() {
+    public void getProposalFillView() {
         presenter.getUndoneProposals(search.getText().toString());
         presenter.getDoneProposals(search.getText().toString());
     }

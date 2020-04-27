@@ -11,4 +11,6 @@ public interface AccountDataSource {
     void deleteUser(int id, Callback callback);
     void updateUser(User user, Callback callback);
     void getUser(int id, Callback callback);
+
+    void getUserByRoleId(int roleId, Callback callback);
 }

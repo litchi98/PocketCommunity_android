@@ -14,11 +14,11 @@ import com.litchi.pocketcommunity.data.bean.ProposalItem;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class ProposalDetailAdapter extends RecyclerView.Adapter<ProposalDetailAdapter.ViewHolder> {
+public class ItemProposalDetailAdapter extends RecyclerView.Adapter<ItemProposalDetailAdapter.ViewHolder> {
 
     private List<ProposalItem> proposalItems;
 
-    public ProposalDetailAdapter(List<ProposalItem> proposalItems) {
+    public ItemProposalDetailAdapter(List<ProposalItem> proposalItems) {
         this.proposalItems = proposalItems;
     }
 
@@ -34,9 +34,17 @@ public class ProposalDetailAdapter extends RecyclerView.Adapter<ProposalDetailAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProposalItem proposalItem = proposalItems.get(position);
         holder.date.setText(new SimpleDateFormat("MM-dd HH:mm").format(proposalItem.getDealDate()));
-        holder.message.setText(proposalItem.getMessage());
-        holder.nextProcessor.setText(proposalItem.getNextProcessorName());
+        if (proposalItem.getNextProcessorName() == null){
+            holder.nextProcessor.setText("完结");
+        } else {
+            holder.nextProcessor.setText(proposalItem.getNextProcessorName());
+        }
         holder.processor.setText(proposalItem.getProcessorName());
+        if (proposalItem.getMessage() == null){
+            holder.message.setVisibility(View.GONE);
+        } else {
+            holder.message.setText(proposalItem.getMessage());
+        }
         holder.type.setText(proposalItem.getTypeText());
     }
 

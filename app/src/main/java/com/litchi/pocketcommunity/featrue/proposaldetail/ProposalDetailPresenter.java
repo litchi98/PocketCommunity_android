@@ -1,5 +1,7 @@
 package com.litchi.pocketcommunity.featrue.proposaldetail;
 
+import android.os.Looper;
+
 import com.google.gson.reflect.TypeToken;
 import com.litchi.pocketcommunity.base.BasePresenter;
 import com.litchi.pocketcommunity.data.ProposalDataSource;
@@ -17,7 +19,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class ProposalDetailPresenter extends BasePresenter<ProposalDetailActivity> implements ProposalDetailContract.IProposalDetailPreserter {
+public class ProposalDetailPresenter extends BasePresenter<ProposalDetailActivity> implements ProposalDetailContract.IProposalDetailPresenter {
 
     private ProposalDataSource proposalDataSource = new ProposalRemoteDataSource();
 
@@ -48,4 +50,28 @@ public class ProposalDetailPresenter extends BasePresenter<ProposalDetailActivit
             }
         });
     }
+
+    @Override
+    public void proposalTransfer(final ProposalItem proposalItem) {
+        proposalDataSource.proposalTransfer(proposalItem, new Callback(){
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                ResultMessage resultMessage = JsonUtils.parseJSON(response.body().string(), ResultMessage.class);
+                if (ResultMessage.SUCCESS_RESULT.equals(resultMessage.getResult())){
+                    String msg = proposalItem.getTypeText() + "成功!";
+                    Looper.prepare();
+                    getView().showToast(msg);
+                    getView().finish();
+                    Looper.loop();
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+
 }

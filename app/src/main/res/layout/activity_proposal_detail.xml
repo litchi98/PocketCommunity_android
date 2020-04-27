@@ -151,7 +151,7 @@
                     android:background="@drawable/radius_button"
                     />
                 <Button
-                    android:id="@+id/proposal_detail_transfer"
+                    android:id="@+id/proposal_detail_follow_up"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="20dp"
@@ -162,7 +162,7 @@
                     android:background="@drawable/radius_button"
                     />
                 <Button
-                    android:id="@+id/proposal_detail_commit"
+                    android:id="@+id/proposal_detail_submit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

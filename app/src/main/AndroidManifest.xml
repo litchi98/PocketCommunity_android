@@ -12,19 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FitsSystemWindowsTheme">
-        <activity android:name=".featrue.proposaldetail.ProposalDetailActivity"
-            android:theme="@style/DarkStatusBarTheme"></activity>
+        <activity android:name=".featrue.addproposal.MainActivity"></activity>
+        <activity android:name=".featrue.proposaldetail.TransferListActivity" />
+        <activity
+            android:name=".featrue.proposaldetail.ProposalDetailActivity"
+            android:theme="@style/DarkStatusBarTheme" />
         <activity android:name=".featrue.park.ParkActivity" />
         <activity android:name=".featrue.bill.BillActivity" />
         <activity
             android:name=".featrue.proposal.ProposalActivity"
-            android:theme="@style/FitsSystemWindowsTheme"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity
             android:name=".featrue.noticedetail.NoticeDetailActivity"
             android:theme="@style/DarkStatusBarTheme" />
-        <activity android:name=".featrue.home.HomeActivity"></activity>
+        <activity android:name=".featrue.home.HomeActivity" />
         <activity
             android:name=".featrue.account.AccountActivity"
             android:theme="@style/DarkStatusBarTheme">

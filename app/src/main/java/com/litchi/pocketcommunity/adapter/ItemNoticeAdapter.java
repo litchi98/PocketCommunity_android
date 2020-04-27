@@ -18,7 +18,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder> {
+public class ItemNoticeAdapter extends RecyclerView.Adapter<ItemNoticeAdapter.ViewHolder> {
 
     private List<Notice> notices;
 
@@ -27,7 +27,7 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.ViewHolder
     private static final int NORMAL_VIEW = 0;
     private static final int FOOT_VIEW = 1;
 
-    public NoticeAdapter(List<Notice> notices, View.OnClickListener onClickListener) {
+    public ItemNoticeAdapter(List<Notice> notices, View.OnClickListener onClickListener) {
         this.notices = notices;
         this.onClickListener = onClickListener;
     }

@@ -41,6 +41,11 @@ public class UrlUtils {
     // get proposal detail
     public static final String GET_PROPOSAL_DETAIL = "/work-order/detail";
 
+    // transfer proposal
+    public static final String PROPOSAL_TRANSFER = "/work-order/transfer";
+
+    public static final String ADD_PROPOSAL = "/work-order";
+
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();
     }

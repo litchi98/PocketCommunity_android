@@ -15,12 +15,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class ProposalAdapter extends RecyclerView.Adapter<ProposalAdapter.ViewHolder> {
+public class ItemProposalAdapter extends RecyclerView.Adapter<ItemProposalAdapter.ViewHolder> {
 
     private View.OnClickListener onClickListener;
     private List<Proposal> proposals;
 
-    public ProposalAdapter(List<Proposal> proposals, View.OnClickListener onClickListener) {
+    public ItemProposalAdapter(List<Proposal> proposals, View.OnClickListener onClickListener) {
         this.proposals = proposals;
         this.onClickListener = onClickListener;
     }

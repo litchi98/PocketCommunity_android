@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.litchi.pocketcommunity.R;
-import com.litchi.pocketcommunity.adapter.ProposalAdapter;
+import com.litchi.pocketcommunity.adapter.ItemProposalAdapter;
 import com.litchi.pocketcommunity.base.BaseFragment;
 import com.litchi.pocketcommunity.data.bean.Proposal;
 import com.litchi.pocketcommunity.featrue.proposaldetail.ProposalDetailActivity;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
 
     private List<Proposal> proposals = new ArrayList<>();
-    private ProposalAdapter proposalAdapter;
+    private ItemProposalAdapter proposalAdapter;
 
     private int roleId;
     private int currentUserId;
@@ -31,7 +31,7 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
     @Override
     protected void init(View view) {
         final RecyclerView proposalList = (RecyclerView) view.findViewById(R.id.frag_proposal_list_recycler);
-        proposalAdapter = new ProposalAdapter(proposals, new View.OnClickListener() {
+        proposalAdapter = new ItemProposalAdapter(proposals, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int position = proposalList.getChildAdapterPosition(view);
@@ -45,6 +45,8 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
         });
         proposalList.setAdapter(proposalAdapter);
         proposalList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ((ProposalActivity)getActivity()).getProposalFillView();
     }
 
     @Override
