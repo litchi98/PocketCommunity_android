@@ -41,10 +41,15 @@
     <string name="dialog_confirm">确认</string>
     <string name="add_notice_label">发布通知</string>
     <string name="frag_community_goto_verify">审核</string>
-    <string name="frag_community_goto_management">管理</string>
+    <string name="frag_community_goto_management">用户管理</string>
     <string name="management_search">姓名/手机号/身份证号</string>
     <string name="add_user_label">添加一个用户</string>
     <string name="add_user_name">姓名</string>
     <string name="add_user_tel">手机号码</string>
     <string name="add_user_idNumber">身份证号码</string>
+    <string name="frag_community_goto_building">住房管理</string>
+    <string name="building_search">住房编号(1栋2单元301室：12301)</string>
+    <string name="building_unit">单元</string>
+    <string name="building_building">栋</string>
+    <string name="building_room">室</string>
 </resources>

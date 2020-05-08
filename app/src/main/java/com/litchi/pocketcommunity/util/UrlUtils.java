@@ -50,9 +50,9 @@ public class UrlUtils {
     // add a work order
     public static final String ADD_PROPOSAL = "/work-order";
 
-    /* Verify api */
-    // get verifies
-    public static final String GET_VERIFIES = "/verifies";
+    /* Building api */
+    // get building
+    public static final String GET_BUILDING = "/building";
 
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();

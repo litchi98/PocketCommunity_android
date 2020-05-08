@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.base.BaseFragment;
+import com.litchi.pocketcommunity.featrue.building.BuildingActivity;
 import com.litchi.pocketcommunity.featrue.management.ManagementActivity;
 import com.litchi.pocketcommunity.featrue.proposal.ProposalActivity;
 import com.litchi.pocketcommunity.util.UrlUtils;
@@ -26,6 +27,7 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
     private Integer roleId;
     private Integer currentUserId;
     private View goManagement;
+    private View goBuilding;
 
     public CommunityFragment(Integer avatarId, String name, String telNumber, int roleId, int currentUserId) {
         this.avatarId = avatarId;
@@ -41,6 +43,7 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
         goBill = view.findViewById(R.id.frag_community_go_bill);
         goProposal = view.findViewById(R.id.frag_community_go_proposal);
         goManagement = view.findViewById(R.id.frag_community_go_management);
+        goBuilding = view.findViewById(R.id.frag_community_go_building);
 
         CircleImageView avatar = (CircleImageView) view.findViewById(R.id.frag_community_avatar);
         TextView nameText = (TextView) view.findViewById(R.id.frag_community_name);
@@ -63,6 +66,8 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
         goProposal.setOnTouchListener(this);
         goManagement.setOnClickListener(this);
         goManagement.setOnTouchListener(this);
+        goBuilding.setOnClickListener(this);
+        goBuilding.setOnTouchListener(this);
     }
 
     @Override
@@ -87,6 +92,9 @@ public class CommunityFragment extends BaseFragment<HomePresenter> implements Vi
                 break;
             case R.id.frag_community_go_management:
                 ManagementActivity.startAction(getActivity(), currentUserId);
+                break;
+            case R.id.frag_community_go_building:
+                getActivity().startActivity(new Intent(getActivity(), BuildingActivity.class));
                 break;
             default:
                 break;

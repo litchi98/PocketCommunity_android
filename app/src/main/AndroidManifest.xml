@@ -7,15 +7,15 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FitsSystemWindowsTheme">
-        <activity android:name=".featrue.edituser.EditUserActivity"></activity>
+        <activity android:name=".featrue.building.BuildingActivity"></activity>
+        <activity android:name=".featrue.edituser.EditUserActivity" />
         <activity android:name=".featrue.adduser.AddUserActivity" />
         <activity android:name=".featrue.management.ManagementActivity" />
-        <activity android:name=".featrue.verify.VerifyActivity" />
         <activity android:name=".featrue.addnotice.AddNoticeActivity" />
         <activity android:name=".featrue.addproposal.AddProposalActivity" />
         <activity android:name=".featrue.proposaldetail.TransferListActivity" />
