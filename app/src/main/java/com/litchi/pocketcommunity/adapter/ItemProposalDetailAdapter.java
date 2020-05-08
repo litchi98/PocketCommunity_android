@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.data.bean.ProposalItem;
+import com.litchi.pocketcommunity.util.DateFormatUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ItemProposalDetailAdapter extends RecyclerView.Adapter<ItemProposalDetailAdapter.ViewHolder> {
@@ -33,7 +33,7 @@ public class ItemProposalDetailAdapter extends RecyclerView.Adapter<ItemProposal
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProposalItem proposalItem = proposalItems.get(position);
-        holder.date.setText(new SimpleDateFormat("MM-dd HH:mm").format(proposalItem.getDealDate()));
+        holder.date.setText(DateFormatUtils.format(proposalItem.getDealDate()));
         if (proposalItem.getNextProcessorName() == null){
             holder.nextProcessor.setText("完结");
         } else {

@@ -18,7 +18,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ItemTransferListAdapter extends RecyclerView.Adapter<ItemTransferListAdapter.ViewHold> {
+public class ItemTransferListAdapter extends RecyclerView.Adapter<ItemTransferListAdapter.ViewHolder> {
 
     private View.OnClickListener onClickListener;
     private List<User> users;
@@ -30,7 +30,7 @@ public class ItemTransferListAdapter extends RecyclerView.Adapter<ItemTransferLi
 
     @NonNull
     @Override
-    public ViewHold onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_transfer_list, parent, false);
         view.setOnClickListener(onClickListener);
         view.setOnTouchListener(new View.OnTouchListener() {
@@ -45,12 +45,12 @@ public class ItemTransferListAdapter extends RecyclerView.Adapter<ItemTransferLi
                 return false;
             }
         });
-        ViewHold viewHold = new ViewHold(view);
+        ViewHolder viewHold = new ViewHolder(view);
         return viewHold;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHold holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User user = users.get(position);
         Glide.with(holder.avatar).load(UrlUtils.url(UrlUtils.GET_IMAGE)+"/"+user.getAvatarImageId()).into(holder.avatar);
         holder.name.setText(user.getName());
@@ -61,12 +61,12 @@ public class ItemTransferListAdapter extends RecyclerView.Adapter<ItemTransferLi
         return users.size();
     }
 
-    class ViewHold extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         CircleImageView avatar;
         TextView name;
 
-        public ViewHold(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             avatar = (CircleImageView) itemView.findViewById(R.id.item_transfer_list_avatar);
             name = (TextView) itemView.findViewById(R.id.item_transfer_list_name);

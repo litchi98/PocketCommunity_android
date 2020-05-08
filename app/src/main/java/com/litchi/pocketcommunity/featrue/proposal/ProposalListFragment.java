@@ -30,7 +30,7 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
 
     @Override
     protected void init(View view) {
-        final RecyclerView proposalList = (RecyclerView) view.findViewById(R.id.frag_proposal_list_recycler);
+        final RecyclerView proposalList = (RecyclerView) view.findViewById(R.id.frag_list_recycler);
         proposalAdapter = new ItemProposalAdapter(proposals, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,15 +38,15 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
                 Proposal proposal = proposals.get(position);
                 if (proposal.getState() != Proposal.STATE_TO_BE_PROCESSED){
                     ProposalDetailActivity.startAction(getActivity(), proposal, roleId, currentUserId);
-                } else {
+                } else if (roleId == 2 || proposal.getProposerId() == currentUserId){
                     Toast.makeText(getActivity(), "该工单还未处理\n请耐心等待", Toast.LENGTH_SHORT).show();
+                } else{
+                    ProposalDetailActivity.startAction(getActivity(), proposal, roleId, currentUserId);
                 }
             }
         });
         proposalList.setAdapter(proposalAdapter);
         proposalList.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        ((ProposalActivity)getActivity()).getProposalFillView();
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ProposalListFragment extends BaseFragment<ProposalPresenter> {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_proposal_list;
+        return R.layout.fragment_list;
     }
 
     public void refreshList(List<Proposal> proposals){

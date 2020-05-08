@@ -40,6 +40,7 @@ public class HomePresenter extends BasePresenter<HomeActivity> implements HomeCo
                 getView().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        getView().getNoticeFragment().setUrl(url);
                         getView().getNoticeFragment().drawDailyImage(url);
                     }
                 });

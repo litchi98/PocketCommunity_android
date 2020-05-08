@@ -17,6 +17,9 @@ public class Notice implements Parcelable {
     private Date publishDate;
     private Integer avatarId;
 
+    public Notice() {
+    }
+
     protected Notice(Parcel in) {
         if (in.readByte() == 0) {
             id = null;
@@ -97,6 +100,14 @@ public class Notice implements Parcelable {
 
     public void setAvatarId(Integer avatarId) {
         this.avatarId = avatarId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     @Override

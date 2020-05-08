@@ -12,10 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.adapter.ItemNoticeAdapter;
 import com.litchi.pocketcommunity.base.BaseFragment;
 import com.litchi.pocketcommunity.data.bean.Notice;
+import com.litchi.pocketcommunity.featrue.addnotice.AddNoticeActivity;
 import com.litchi.pocketcommunity.featrue.noticedetail.NoticeDetailActivity;
 
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
 
     private boolean isLoading = false;
 
+    private String url;
+    private FloatingActionButton actionBtn;
+
     @Override
     protected void init(View view) {
         dailyImage = (ImageView) view.findViewById(R.id.frag_notice_dailyImage);
@@ -52,6 +57,10 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
         noticeRecycler.setAdapter(noticeAdapter);
         noticeRecycler.setLayoutManager(linearLayoutManager);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.frag_notice_swipe_refresh);
+        actionBtn = (FloatingActionButton) view.findViewById(R.id.frag_notice_floatingBtn);
+        if( ((HomeActivity)getActivity()).getRoleId() == 1){
+            actionBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -83,6 +92,13 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
                 lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
             }
         });
+
+        actionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddNoticeActivity.startAction(getActivity(), ((HomeActivity)getActivity()).getCurrentUserId());
+            }
+        });
     }
 
     @Override
@@ -93,11 +109,14 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        presenter.getDailyImage();
-        getNotices(1, 4, true);
+        if (url == null){
+            presenter.getDailyImage();
+        } else {
+            drawDailyImage(url);
+        }
     }
 
-    private void getNotices(int pageNum, int pageSize, boolean isRefresh){
+    public void getNotices(int pageNum, int pageSize, boolean isRefresh){
         if (pageNum <= pages){
             presenter.getNotices(pageNum, pageSize, isRefresh);
         } else {
@@ -149,4 +168,10 @@ public class NoticeFragment extends BaseFragment<HomePresenter> {
     public void setRefreshing(boolean refreshing){
         refreshLayout.setRefreshing(refreshing);
     }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+
 }

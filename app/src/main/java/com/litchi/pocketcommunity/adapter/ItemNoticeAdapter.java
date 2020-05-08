@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.data.bean.Notice;
+import com.litchi.pocketcommunity.util.DateFormatUtils;
 import com.litchi.pocketcommunity.util.UrlUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -53,7 +53,7 @@ public class ItemNoticeAdapter extends RecyclerView.Adapter<ItemNoticeAdapter.Vi
             Glide.with(holder.avatar).load(UrlUtils.url(UrlUtils.GET_IMAGE + "/" + notice.getAvatarId())).into(holder.avatar);
             holder.name.setText(notice.getName());
             holder.content.setText(notice.getContent());
-            holder.publishDate.setText(new SimpleDateFormat("MM-dd HH:mm").format(notice.getPublishDate()));
+            holder.publishDate.setText(DateFormatUtils.format(notice.getPublishDate()));
         }
     }
 

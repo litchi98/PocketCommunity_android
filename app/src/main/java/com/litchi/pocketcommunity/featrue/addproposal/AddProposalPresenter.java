@@ -1,7 +1,5 @@
 package com.litchi.pocketcommunity.featrue.addproposal;
 
-import android.os.Looper;
-
 import com.litchi.pocketcommunity.base.BasePresenter;
 import com.litchi.pocketcommunity.data.ProposalDataSource;
 import com.litchi.pocketcommunity.data.bean.Proposal;
@@ -32,10 +30,8 @@ public class AddProposalPresenter extends BasePresenter<AddProposalActivity> imp
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 ResultMessage resultMessage = JsonUtils.parseJSON(response.body().string(), ResultMessage.class);
-                if (ResultMessage.SUCCESS_RESULT.equals(resultMessage)){
-                    Looper.prepare();
+                if (ResultMessage.SUCCESS_RESULT.equals(resultMessage.getResult())){
                     getView().addSuccess();
-                    Looper.loop();
                 }
             }
         });

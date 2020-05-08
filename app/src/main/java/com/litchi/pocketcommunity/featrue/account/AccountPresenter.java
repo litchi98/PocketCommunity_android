@@ -1,16 +1,12 @@
 package com.litchi.pocketcommunity.featrue.account;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.base.BasePresenter;
 import com.litchi.pocketcommunity.data.AccountDataSource;
-import com.litchi.pocketcommunity.data.bean.User;
 import com.litchi.pocketcommunity.data.remote.AccountRemoteDataSource;
 import com.litchi.pocketcommunity.featrue.home.HomeActivity;
 import com.litchi.pocketcommunity.util.Authorization;
@@ -26,7 +22,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
-import static com.litchi.pocketcommunity.util.Constant.LOGIN_VERIFY_REFUSAL;
 
 public class AccountPresenter extends BasePresenter<AccountActivity> implements AccountContract.IAccountPresenter {
 
@@ -70,49 +65,7 @@ public class AccountPresenter extends BasePresenter<AccountActivity> implements 
                     HomeActivity.startAction(getView(), avatarId, telNumber, name, roleId, currentUserId);
                     getView().finish();
                 } else {
-                    if (resultMessage.getMsg().equals(LOGIN_VERIFY_REFUSAL)){
-                        getView().showDialog(resultMessage.getMsg(), " result: " + resultMessage.getData("reason")
-                                + "\nplease register again...", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                getView().changeFragment(new RegisterFragment());
-                                getView().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        getView().changeGapFocus(R.id.go_register_gap);
-                                    }
-                                });
-                            }
-                        });
-                    }
                     getView().showToast(resultMessage.getMsg());
-                }
-            }
-        });
-    }
-
-    @Override
-    public void register(String name, String password, String gender, String identificationId, int identificationImageId, int contractImageId) {
-        User user = new User();
-        user.setName(name);
-        user.setPassword(password);
-        user.setGender(gender);
-        user.setIdentificationId(identificationId);
-        user.setContractImageId(contractImageId);
-        accountDataSource.register(user, new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.d(TAG, "onFailure: call register failed...");
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                ResultMessage resultMessage = new Gson().fromJson(response.body().toString(), ResultMessage.class);
-                if (ResultMessage.SUCCESS_RESULT.equals(resultMessage.getResult())){
-                    getView().changeFragment(new LoginFragment());
-                } else {
-                    ((AccountContract.IAccountView)getView()).showToast(resultMessage.getMsg());
                 }
             }
         });

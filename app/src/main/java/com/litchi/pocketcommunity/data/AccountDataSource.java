@@ -13,4 +13,6 @@ public interface AccountDataSource {
     void getUser(int id, Callback callback);
 
     void getUserByRoleId(int roleId, Callback callback);
+
+    void getUserByCondition(String condition, Callback callback);
 }

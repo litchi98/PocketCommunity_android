@@ -10,11 +10,7 @@ public interface AccountContract {
     }
 
      interface IAccountPresenter {
-
         void login(String telNumber, String password, boolean isRemember);
-
-         void register(String name, String password, String gender, String identificationId,
-                               int identificationImageId, int contractImageId);
-         void uploadImage();
+        void uploadImage();
     }
 }

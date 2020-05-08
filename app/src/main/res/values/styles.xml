@@ -12,14 +12,14 @@
 
     <style name="DarkStatusBarTheme" parent="FitsSystemWindowsTheme"/>
 
-    <style name="MyTablayoutstyle" parent="Base.Widget.Design.TabLayout">
+    <style name="MyTabLayoutStyle" parent="Base.Widget.Design.TabLayout">
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabSelectedTextColor">@color/white</item>
         <item name="tabTextColor">@color/colorPrimaryEnable</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
-    <style name="MyTablayoutTextStyle">
+    <style name="MyTabLayoutTextStyle">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>

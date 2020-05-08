@@ -35,6 +35,7 @@ public class TransferListPresenter extends BasePresenter<TransferListActivity> {
                 getView().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        System.out.println(users == null);
                         getView().refreshList(users);
                     }
                 });

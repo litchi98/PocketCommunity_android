@@ -24,6 +24,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.base.BaseActivity;
 import com.litchi.pocketcommunity.data.bean.Proposal;
+import com.litchi.pocketcommunity.featrue.addproposal.AddProposalActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,8 +81,6 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
                 }
                 return false;
             }
-
-
         });
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -104,7 +103,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                AddProposalActivity.startAction(ProposalActivity.this, currentUserId);
             }
         });
     }
@@ -117,6 +116,7 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
     @Override
     protected void onStart() {
         super.onStart();
+        getProposalFillView();
     }
 
     private void initPageView2() {
@@ -151,10 +151,12 @@ public class ProposalActivity extends BaseActivity<ProposalPresenter> implements
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
     public void refreshNotDoneList(List<Proposal> notDoneList) {
         proposalListFragments.get(0).refreshList(notDoneList);
     }
 
+    @Override
     public void refreshDoneList(List<Proposal> doneList) {
         proposalListFragments.get(1).refreshList(doneList);
     }

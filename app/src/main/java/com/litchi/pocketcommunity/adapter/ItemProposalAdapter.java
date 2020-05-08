@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.litchi.pocketcommunity.R;
 import com.litchi.pocketcommunity.data.bean.Proposal;
+import com.litchi.pocketcommunity.util.DateFormatUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class ItemProposalAdapter extends RecyclerView.Adapter<ItemProposalAdapte
         holder.title.setText(proposal.getTitle());
         holder.content.setText(proposal.getContent());
         Date proposeDate = proposal.getProposeDate();
-        holder.date.setText(new SimpleDateFormat("MM-dd HH:mm").format(proposeDate));
+        holder.date.setText(DateFormatUtils.format(proposeDate));
         Integer proposalState = proposal.getState();
         holder.state.setText(proposal.getStateText());
         if (proposalState == Proposal.STATE_TO_BE_CONFIRMED){

@@ -126,8 +126,10 @@ public class ProposalDetailActivity extends BaseActivity<ProposalDetailPresenter
     }
 
     public void refreshDetail(List<ProposalItem> proposalItems){
-        this.proposalItems.addAll(proposalItems);
-        this.proposalDetailAdapter.notifyDataSetChanged();
+        if (proposalItems != null) {
+            this.proposalItems.addAll(proposalItems);
+            this.proposalDetailAdapter.notifyDataSetChanged();
+        }
     }
 
     public void setNameAndAvatar(String name, Integer avatarId){

@@ -187,6 +187,39 @@
                 android:layout_height="1dp"
                 android:background="#F3F3F3"
                 android:layout_marginLeft="44dp"/>
+            <LinearLayout
+                android:id="@+id/frag_community_go_management"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                >
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/management"
+                    android:layout_marginRight="10dp"
+                    />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:text="@string/frag_community_goto_management"
+                    />
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/forward"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F3F3F3"
+                android:layout_marginLeft="44dp"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

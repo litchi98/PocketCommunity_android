@@ -20,7 +20,16 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
     private NoticeFragment noticeFragment;
     private CommunityFragment communityFragment;
     private int roleId;
+
     private int currentUserId;
+
+    public int getCurrentUserId() {
+        return currentUserId;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
 
     public static void startAction(Context context, Integer avatarId, String telNumber, String name, Integer roleId, Integer currentUserId){
         Intent intent = new Intent(context, HomeActivity.class);
@@ -72,6 +81,12 @@ public class HomeActivity extends BaseActivity<HomePresenter> implements HomeCon
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        noticeFragment.getNotices(1, 4, true);
     }
 
     @Override

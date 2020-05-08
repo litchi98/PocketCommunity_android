@@ -12,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/FitsSystemWindowsTheme">
-        <activity android:name=".featrue.addproposal.MainActivity"></activity>
+        <activity android:name=".featrue.edituser.EditUserActivity"></activity>
+        <activity android:name=".featrue.adduser.AddUserActivity" />
+        <activity android:name=".featrue.management.ManagementActivity" />
+        <activity android:name=".featrue.verify.VerifyActivity" />
+        <activity android:name=".featrue.addnotice.AddNoticeActivity" />
+        <activity android:name=".featrue.addproposal.AddProposalActivity" />
         <activity android:name=".featrue.proposaldetail.TransferListActivity" />
         <activity
             android:name=".featrue.proposaldetail.ProposalDetailActivity"

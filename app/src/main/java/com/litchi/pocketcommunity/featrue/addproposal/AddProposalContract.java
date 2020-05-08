@@ -5,7 +5,7 @@ import com.litchi.pocketcommunity.data.bean.Proposal;
 public interface AddProposalContract {
 
     interface IAddProposalView{
-
+        void addSuccess();
     }
 
     interface IAddProposalPresenter{

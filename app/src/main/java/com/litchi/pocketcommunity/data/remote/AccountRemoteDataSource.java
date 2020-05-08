@@ -8,6 +8,8 @@ import com.litchi.pocketcommunity.util.UrlUtils;
 
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class AccountRemoteDataSource implements AccountDataSource {
 
@@ -31,7 +33,8 @@ public class AccountRemoteDataSource implements AccountDataSource {
 
     @Override
     public void saveUser(User user, Callback callback) {
-
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JsonUtils.toJSON(user));
+        HttpUtils.post(UrlUtils.url(UrlUtils.ADD_USER), requestBody, callback);
     }
 
     @Override
@@ -48,6 +51,11 @@ public class AccountRemoteDataSource implements AccountDataSource {
 
     @Override
     public void getUserByRoleId(int roleId, Callback callback) {
-        HttpUtils.get(UrlUtils.url(UrlUtils.ALL_USER)+"/"+roleId, callback);
+        HttpUtils.get(UrlUtils.url(UrlUtils.GET_USERS)+"/"+roleId, callback);
+    }
+
+    @Override
+    public void getUserByCondition(String condition, Callback callback) {
+        HttpUtils.get(UrlUtils.url(UrlUtils.GET_USERS)+"?condition="+condition, callback);
     }
 }

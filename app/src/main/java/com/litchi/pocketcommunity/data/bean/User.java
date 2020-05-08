@@ -9,14 +9,18 @@ public class User implements Parcelable {
 
     private int id;
     private String name;
+
     private String password;
+
     private String gender;
+
     private String telNumber;
+
     private String identificationId;
-    private int identificationImageId;
-    private int contractImageId;
-    private int avatarImageId;
-    private int roleId;
+
+    private Integer avatarImageId;
+
+    private Integer roleId;
 
     public User(Parcel in) {
         id = in.readInt();
@@ -25,8 +29,6 @@ public class User implements Parcelable {
         gender = in.readString();
         telNumber = in.readString();
         identificationId = in.readString();
-        identificationImageId = in.readInt();
-        contractImageId = in.readInt();
         avatarImageId = in.readInt();
         roleId = in.readInt();
     }
@@ -42,8 +44,6 @@ public class User implements Parcelable {
         dest.writeString(gender);
         dest.writeString(telNumber);
         dest.writeString(identificationId);
-        dest.writeInt(identificationImageId);
-        dest.writeInt(contractImageId);
         dest.writeInt(avatarImageId);
         dest.writeInt(roleId);
     }
@@ -111,22 +111,6 @@ public class User implements Parcelable {
 
     public void setIdentificationId(String identificationId) {
         this.identificationId = identificationId;
-    }
-
-    public int getIdentificationImageId() {
-        return identificationImageId;
-    }
-
-    public void setIdentificationImageId(int identificationImageId) {
-        this.identificationImageId = identificationImageId;
-    }
-
-    public int getContractImageId() {
-        return contractImageId;
-    }
-
-    public void setContractImageId(int contractImageId) {
-        this.contractImageId = contractImageId;
     }
 
     public int getAvatarImageId() {

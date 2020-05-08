@@ -15,7 +15,7 @@ public class UrlUtils {
     public static final String REGISTER = "/register";
 
     // get all user
-    public static final String ALL_USER = "/all";
+    public static final String GET_USERS = "/users";
 
     // add a user
     public static final String ADD_USER = "/add";
@@ -31,6 +31,9 @@ public class UrlUtils {
     // get notices by page
     public static final String GET_NOTICE = "/notices";
 
+    // add a notice
+    public static final String ADD_NOTICE = "/notice";
+
     /* Proposal api */
     // get done proposal
     public static final String GET_DONE_PROPOSAL = "/work-orders/done";
@@ -44,7 +47,12 @@ public class UrlUtils {
     // transfer proposal
     public static final String PROPOSAL_TRANSFER = "/work-order/transfer";
 
+    // add a work order
     public static final String ADD_PROPOSAL = "/work-order";
+
+    /* Verify api */
+    // get verifies
+    public static final String GET_VERIFIES = "/verifies";
 
     public static String url(String api){
         return  new StringBuilder().append(BASE_URL).append(api).toString();

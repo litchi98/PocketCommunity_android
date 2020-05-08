@@ -21,11 +21,9 @@ import java.util.List;
 public class AccountActivity extends BaseActivity<AccountPresenter> implements AccountContract.IAccountView, View.OnClickListener {
 
     private TextView goLogin;
-    private TextView goRgt;
     private TextView goFpw;
     private List<View> gapList = new ArrayList<>();
     private LoginFragment loginFragment;
-    private RegisterFragment registerFragment;
     private FPwFragment fPwFragment;
 
     @Override
@@ -39,14 +37,11 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
     @Override
     protected void init(){
         goLogin = (TextView) findViewById(R.id.account_go_login_frag);
-        goRgt = (TextView) findViewById(R.id.account_go_rgt_frag);
         goFpw = (TextView) findViewById(R.id.account_go_fpw_frag);
         gapList.add(findViewById(R.id.go_login_gap));
-        gapList.add(findViewById(R.id.go_register_gap));
         gapList.add(findViewById(R.id.go_fpw_gap));
 
         loginFragment = new LoginFragment();
-        registerFragment = new RegisterFragment();
         fPwFragment = new FPwFragment();
 
         changeFragment(loginFragment);
@@ -55,7 +50,6 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
     @Override
     protected void register() {
         goLogin.setOnClickListener(this);
-        goRgt.setOnClickListener(this);
         goFpw.setOnClickListener(this);
     }
 
@@ -89,10 +83,6 @@ public class AccountActivity extends BaseActivity<AccountPresenter> implements A
             case R.id.account_go_login_frag:
                 changeFragment(loginFragment);
                 changeGapFocus(R.id.go_login_gap);
-                break;
-            case R.id.account_go_rgt_frag:
-                changeFragment(registerFragment);
-                changeGapFocus(R.id.go_register_gap);
                 break;
             case R.id.account_go_fpw_frag:
                 changeFragment(fPwFragment);

@@ -25,6 +25,10 @@ public class Proposal implements Parcelable {
 
     private Date proposeDate;
 
+    public Proposal(){
+
+    }
+
     protected Proposal(Parcel in) {
         if (in.readByte() == 0) {
             id = null;

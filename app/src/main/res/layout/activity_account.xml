@@ -35,18 +35,6 @@
                 android:textStyle="bold"
                 android:text="@string/account_login" />
             <TextView
-                android:id="@+id/account_go_rgt_frag"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:textStyle="bold"
-                android:text="@string/account_register" />
-            <TextView
                 android:id="@+id/account_go_fpw_frag"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -73,14 +61,6 @@
                 android:layout_weight="1"
                 android:background="#3674F5"
                 android:visibility="visible"
-                android:layout_marginHorizontal="20dp"/>
-            <View
-                android:id="@+id/go_register_gap"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_weight="1"
-                android:background="#3674F5"
-                android:visibility="invisible"
                 android:layout_marginHorizontal="20dp"/>
             <View
                 android:id="@+id/go_fpw_gap"
